@@ -10,9 +10,6 @@ create table rooms
     updated_at  timestamp default now()                  not null
 );
 
-alter table rooms
-    owner to postgres;
-
 create table devices
 (
     id           serial
@@ -30,9 +27,6 @@ create table devices
     updated_at   timestamp default now()             not null
 );
 
-alter table devices
-    owner to postgres;
-
 create table device_status
 (
     id               serial
@@ -44,9 +38,6 @@ create table device_status
     updated_at       timestamp default now() not null,
     last_reported_at timestamp default now() not null
 );
-
-alter table device_status
-    owner to postgres;
 
 create index device_id_idx
     on device_status (device_id);
@@ -84,9 +75,6 @@ create table room_status
     metadata              jsonb,
     updated_at            timestamp default now()           not null
 );
-
-alter table room_status
-    owner to postgres;
 
 create index room_status_room_id_idx
     on room_status (room_id);

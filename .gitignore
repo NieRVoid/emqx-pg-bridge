@@ -1,0 +1,4 @@
+/.vscode
+/build
+/emqx-pg-bridge
+/config.yaml

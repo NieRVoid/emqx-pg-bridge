@@ -19,10 +19,10 @@ type Config struct {
 
 // ServerConfig holds server-specific configuration
 type ServerConfig struct {
-	Port               int `yaml:"port"`
-	ReadTimeoutSecs    int `yaml:"read_timeout_seconds"`
-	WriteTimeoutSecs   int `yaml:"write_timeout_seconds"`
-	IdleTimeoutSecs    int `yaml:"idle_timeout_seconds"`
+	Port             int `yaml:"port"`
+	ReadTimeoutSecs  int `yaml:"read_timeout_seconds"`
+	WriteTimeoutSecs int `yaml:"write_timeout_seconds"`
+	IdleTimeoutSecs  int `yaml:"idle_timeout_seconds"`
 }
 
 // DatabaseConfig holds database-specific configuration
@@ -42,9 +42,9 @@ type LoggingConfig struct {
 
 // MetaConfig holds meta information
 type MetaConfig struct {
-	Version  string `yaml:"version"`
+	Version   string `yaml:"version"`
 	BuildDate string `yaml:"build_date"`
-	Author   string `yaml:"author"`
+	Author    string `yaml:"author"`
 }
 
 // LoadFromFile loads configuration from a YAML file
@@ -78,23 +78,22 @@ func Load() (*Config, error) {
 	}
 
 	// Try each location
-	var lastErr error
 	for _, path := range configPaths {
 		config, err := LoadFromFile(path)
 		if err == nil {
 			return config, nil
 		}
-		lastErr = err
+		// Removed lastErr assignment
 	}
 
 	// If no config file is found, create a default configuration
 	config := &Config{}
 	applyDefaults(config)
-	
+
 	// Log a warning that we're using default configuration
 	fmt.Println("WARNING: No configuration file found. Using default configuration.")
 	fmt.Println("Checked paths:", configPaths)
-	
+
 	return config, nil
 }
 
@@ -122,7 +121,7 @@ func applyDefaults(config *Config) {
 		config.Server.Port = 8080
 	}
 	if config.Server.ReadTimeoutSecs == 0 {
-		config.Server.ReadTimeoutSecs = 15  // Fixed: replaced 'a' with '15'
+		config.Server.ReadTimeoutSecs = 15 // Fixed: replaced 'a' with '15'
 	}
 	if config.Server.WriteTimeoutSecs == 0 {
 		config.Server.WriteTimeoutSecs = 15

@@ -52,7 +52,7 @@ go build -o emqx-pg-bridge ./cmd/server
 ./emqx-pg-bridge
 
 # Run with specific config file
-./emqx-pg-bridge -config ./my-config.yaml
+./emqx-pg-bridge -config ./config.yaml
 ```
 
 ## EMQX Configuration
