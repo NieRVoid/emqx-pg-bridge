@@ -42,6 +42,9 @@ create table device_status
 create index device_id_idx
     on device_status (device_id);
 
+create unique index device_status_device_id_unique_idx
+    on device_status (device_id);
+
 create index name_idx
     on devices (name);
 
@@ -68,10 +71,10 @@ create table room_status
     noise_level           integer,
     occupied              boolean   default false           not null,
     occupant_count        integer   default 0               not null,
-    count_reliable        boolean   default false           not null,
+    count_confidence      integer   default 0               not null,
+    occupied_confidence   integer   default 0               not null,
     count_source          text      default 'unknown'::text not null,
-    source_reliability    integer   default 0               not null,
-    last_occupancy_change timestamp,
+    last_source_change    timestamp,
     metadata              jsonb,
     updated_at            timestamp default now()           not null
 );

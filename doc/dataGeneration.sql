@@ -9,8 +9,8 @@ VALUES
 ('302', 'Room 302', 'Third floor room 302', 'unknown');
 
 -- Insert the room_status corresponding to 6 rooms, all rooms are empty rooms
-INSERT INTO room_status (room_id, temperature, humidity, air_quality, light_level, noise_level, occupied, occupant_count, count_reliable, count_source, source_reliability, last_occupancy_change, metadata)
-SELECT id, 22, 40, 80, 300, 30, false, 0, false, 'system', 0, now(), '{}'::jsonb
+INSERT INTO room_status (room_id, temperature, humidity, air_quality, light_level, noise_level, occupied, occupant_count, count_confidence, occupied_confidence, count_source, last_source_change, metadata)
+SELECT id, 22, 40, 80, 300, 30, false, 0, 0, 0, 'system', now(), '{}'::jsonb
 FROM rooms;
 
 -- Insert 6 devices corresponding to each room
