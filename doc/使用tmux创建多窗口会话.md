@@ -14,6 +14,8 @@ tmux new -s emqx-pg-bridge
 
 ```bash
 ./emqx-pg-bridge -config ./config.yaml
+
+/opt/myapp/apps/emqx-pg-bridge/emqx-pg-bridge -config /opt/myapp/apps/emqx-pg-bridge/config.yaml
 ```
 
 3. **退出但保持程序运行：**  
